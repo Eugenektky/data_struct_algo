@@ -1,12 +1,12 @@
-class MaxBinaryHeap {
+class PriorityQueue {
     constructor () {
         this.value = []
     }
 
-    insert(element){
-       this.value.push(element)
-       this.bubbleUp()
-       
+    enqueue(element, priority){
+        let newNode = new Node(element, priority)
+        this.value.push(newNode)
+        this.bubbleUp()
     }
     bubbleUp(){
         var idx = this.value.length - 1
@@ -14,7 +14,7 @@ class MaxBinaryHeap {
         while(idx > 0){
             var parentIdx = Math.floor((idx - 1)/2)
             var parent = this.value[parentIdx]
-            if(this.value[parentIdx]<element){
+            if(parent.priority <= element.priority){
                 this.value[parentIdx] = element
                 this.value[idx] = parent
                 idx = parentIdx
@@ -23,7 +23,7 @@ class MaxBinaryHeap {
             }
         }
     }
-    extractMax(){
+    dequeue(){
         const max = this.value[0]
         const end = this.value.pop()
         if(this.value.length > 0){
@@ -44,15 +44,15 @@ class MaxBinaryHeap {
             
             if(leftChildIdx < length){
                 leftChild = this.value[leftChildIdx]
-                if(leftChild > newMax){
+                if(leftChild.priority > newMax.priority){
                     swap = leftChildIdx
                 }
             }
             if(rightChildIdx < length){
                 rightChild = this.value[rightChildIdx]
                 if(
-                    (swap === null && rightChild > newMax) || 
-                    (swap !== null && rightChild > leftChild)
+                    (swap === null && rightChild.priority > newMax.priority) || 
+                    (swap !== null && rightChild.priority > leftChild.priority)
                 ){
                     swap = rightChildIdx
                 }
@@ -69,16 +69,19 @@ class MaxBinaryHeap {
     }
 }
 
-var heap = new MaxBinaryHeap()
+class Node {
+    constructor(element, priority){
+        this.element = element
+        this.priority = priority
+    }
+}
 
-heap.insert(41)
-heap.insert(39)
-heap.insert(33)
-heap.insert(18)
-heap.insert(27)
-heap.insert(12)
-heap.insert(55)
+var heap = new PriorityQueue()
+heap.enqueue("high fever", 2)
+heap.enqueue("accident", 1)
+heap.enqueue("mild stomachache", 5)
 
-//change
 
+console.log(heap)
+console.log(heap.dequeue())
 console.log(heap)
