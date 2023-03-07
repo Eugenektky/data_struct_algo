@@ -1,17 +1,13 @@
-let inputString = "aabaa"
-let inputString2 = ""
-for(let i = inputString.length-1; i>=0; i--){
-    inputString2.concat('', inputString.charAt(i))
+var arg1 = 123
+var sum = 0
+
+while(Math.floor(arg1)!==0){
+    sum += arg1 % 10
+    arg1 = Math.floor(arg1 /= 10)
+    if(arg1===0){
+        break;
+    }
 }
 
-// if(inputString2 === inputString){
-//     console.log(inputString2)
-//     // return true
-// } else if (inputString.length === 1) {
-//     console.log(inputString2)
-//     // return true
-// } else {
-//     console.log(inputString2)
-//     // return false
-// }
-
+console.log(sum)
+console.log(arg1)

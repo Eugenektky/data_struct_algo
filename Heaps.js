@@ -82,3 +82,12 @@ heap.insert(55)
 //change
 
 console.log(heap)
+console.log(heap.pop())
+
+
+let heap = new Heap()
+
+heap.insert(5)
+heap.insert(1)
+heap.insert(4)
+
